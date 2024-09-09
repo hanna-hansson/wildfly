@@ -54,17 +54,20 @@ jobs:
       #    registry: ${{ secrets.REGISTRY }}
       #    username: ${{ secrets.REGISTRY_USER }}
       #    password: ${{ secrets.REGISTRY_PASSWORD }}
-      - name: Build and push JDK images
+      #- name: Build and push JDK images
+      #  id: docker_build
+      #  uses: docker/build-push-action@v5.3.0
+      #  with:
+      #    push: true
+      #    platforms: ${{ matrix.platforms }}
+      #    build-args: |
+      #      jdk=${{ matrix.jdk-version }}
+      #      dist=${{ matrix.dist }}
+      #    tags: testing
+      #    #labels: ${{ steps.meta.outputs.labels }}
+      - name: Build the Docker image
         id: docker_build
-        uses: docker/build-push-action@v5.3.0
-        with:
-          push: true
-          platforms: ${{ matrix.platforms }}
-          build-args: |
-            jdk=${{ matrix.jdk-version }}
-            dist=${{ matrix.dist }}
-          tags: testing
-          #labels: ${{ steps.meta.outputs.labels }}
+        run: docker build . --file ${{github.workspace}}/Dockerfile --tag testing:testing
 
       - name: Upload to artifacts
         uses: actions/upload-artifact@v4
