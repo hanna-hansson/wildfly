@@ -67,9 +67,9 @@ jobs:
       #    #labels: ${{ steps.meta.outputs.labels }}
       - name: Build the Docker image
         id: docker_build
-        run: docker build . --file ${{github.workspace}}/Dockerfile --tag con-develop-container/primekey/wildfly-testing:33.0.1.Final-jdk17
+        run: docker build . --file ${{github.workspace}}/Dockerfile --tag art.primekey.com/con-develop-container/primekey/wildfly-testing:33.0.1.Final-jdk17
 
       - name: Upload image
         uses: ishworkh/container-image-artifact-upload@v2.0.0
         with:
-          image: "con-develop-container/primekey/wildfly-testing:33.0.1.Final-jdk17"
+          image: "art.primekey.com/con-develop-container/primekey/wildfly-testing:33.0.1.Final-jdk17"
