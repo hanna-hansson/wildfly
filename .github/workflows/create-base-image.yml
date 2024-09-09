@@ -63,7 +63,7 @@ jobs:
           build-args: |
             jdk=${{ matrix.jdk-version }}
             dist=${{ matrix.dist }}
-          #tags: ${{ steps.meta.outputs.tags }}
+          tags: testing
           #labels: ${{ steps.meta.outputs.labels }}
 
       - name: Upload to artifacts
